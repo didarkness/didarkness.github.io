@@ -1,0 +1,102 @@
+<html>
+<head>
+
+ <meta charset='utf-8'>
+ <title>basic game</title>
+
+ <style>
+
+  alert {
+    text-shadow: 2px 2px 2px #as0;
+    color: #fa0;
+ }
+ </style>
+
+</head>
+
+<body bgcolor='#aaf1a1'>
+
+  <a href='main area.html'><button>aqui para volver</button></a>
+  <button onclick="reset()">otra partida?</button>
+
+ <script>
+
+//starting over
+  function reset() {
+    console.log('RESET w=',w,', s=',s);
+    w = false;
+    s = true;
+    start()
+
+  }
+
+  alert('hola :)');
+  let s = confirm('quieres jugar a un juego? :]')
+  console.log('ha respondido', s);
+
+//the game begins
+  if (s == true) {
+    start()
+}//*crying inside*
+else {
+
+ alert('o ok...');
+
+};
+
+
+  function start() {
+   N = Math.round(Math.random()*(101-1)+1);
+   console.log(N);
+   w = false;
+   let L = 20;
+   alert('bien :> , ahora intenta adivinar el numero en el que estoy pensando en menos de 20 intentos :}')
+   alert('(sera entre 1 y 100 :] )')
+//the cicle of numbers
+   while (!w)  {
+    let x = prompt('escribe un numero');
+    console.log('es ', x);
+    if (x < N) {
+//judges your number
+     alert('¡es muy poco! :D');
+     L -= 1;
+
+    }
+
+    else if (x > N) {
+
+     alert('¡es demasiado! :}');
+     L -= 1;
+
+    }
+
+//this is the end
+    if (L <= 0) {
+
+     alert('HA, perdiste! :D');
+     w = true;
+     s = false;
+
+    } else if (x == N) {
+
+     alert('¿¡es correcto!? :O');
+     alert('...');
+     alert('el codigo es ç, $, |, %');
+     w = true;
+     s = false;
+
+
+    }
+
+   }
+
+  }
+
+
+
+ </script>
+
+
+</body>
+
+</html>

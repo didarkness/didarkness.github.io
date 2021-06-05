@@ -1,0 +1,185 @@
+<html>
+
+<head>
+
+ <meta charset='utf-8'>
+ <title>tresenraya</title>
+
+ <style>
+
+   .boton {
+    text-shadow: 2px 2px 2px #afa;
+    font-size: 50;
+    background-color: #f21;
+    height: 150px;
+    width: 150px;
+    border-width: 20;
+
+}
+
+  .go {
+
+   background-color: #aaf;
+   border-width: 5;
+   height: 30px;
+
+}
+
+   .pulsado1 {
+    text-shadow: 2px 2px 2px #faa;
+    font-size: 50;
+    font: 'Papyrus';
+    background-color: #12f;
+    height: 150px;
+    width: 150px;
+    border-width: 20;
+
+}
+
+   .pulsado2 {
+    text-shadow: 2px 2px 2px #fff;
+    font-size: 50;
+    background-color: #2f1;
+    height: 150px;
+    width: 150px;
+    border-width: 20;
+
+}
+
+.emptyness {
+ font-size: 0;
+ height: 0px;
+ width: 0px;
+ border-width: 0;
+ background-color: #a77;
+
+}
+
+ </style>
+
+</head>
+<body bgcolor='#aa7777'>
+
+
+<button id="0" onclick="pulsa(0)" class= "boton"> $ </button>
+
+<button id="1" onclick="pulsa(1)" class= "boton"> @ </button>
+
+<button id="2" onclick="pulsa(2)" class= "boton"> % </button><br>
+
+
+<button id="3" onclick="pulsa(3)" class= "boton"> & </button>
+
+<button id="4" onclick="pulsa(4)" class= "boton"> ç </button>
+
+<button id="5" onclick="pulsa(5)" class= "boton"> * </button><br>
+
+
+<button id="6" onclick="pulsa(6)" class= "boton"> + </button>
+
+<button id="7" onclick="pulsa(7)" class= "boton"> | </button>
+
+<button id="8" onclick="pulsa(8)" class= "boton"> º </button><br><br>
+
+<a href='main area.html'><button class="go"> <== go back </button></a>
+<button onclick="reset()" class="go"> reset </button>
+<br><br>
+<a href='secret.html'><button id=ERROR class="go">     </button></a>
+
+
+<script>
+  document.getElementById('ERROR').hidden = true;
+  let tab=[0,0,0,
+           0,0,0,
+           0,0,0];
+  let jug = 1;
+  let win = 0;
+
+  let lin =[[0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [3,5,8],
+            [0,4,8],
+            [2,4,6]]
+
+  function pulsa(id) {
+
+   if (tab[id]==0 && jug == 1 && win == 0) {
+
+     document.getElementById(id.toString()).classList = ('pulsado1');
+     jug = 2;
+     tab[id] = 1;
+     look();
+
+
+   }
+
+   else if (tab[id]==0 && jug == 2 && win == 0) {
+
+     document.getElementById(id.toString()).classList = ('pulsado2');
+     jug = 1;
+     tab[id] = 2;
+     look();
+   }
+
+  }
+
+  function look() {
+   for (let i = 0; i< lin.length; i++) {
+
+    let paq = lin[i];
+    let[x,y,z] = paq;
+    if (tab[x] == 1 && tab[y] == tab[x]  && tab[z] == tab[y] && win != 3) {
+
+     win = 1;
+
+    }
+    else if (tab[x] == 2 && tab[y] == tab[x]  && tab[z] == tab[y] && win != 3) {
+
+     win = 2;
+
+    }
+    if (win == 1) {
+
+     alert('player 1 won');
+     win = 3
+
+
+    }
+    else if (win == 2) {
+
+     alert('player 2 won');
+     win = 3
+
+
+    }
+   }
+  }
+
+  function reset() {
+    console.log('RESET!');
+    lock1()
+    tab=[0,0,0,
+         0,0,0,
+         0,0,0];
+    for (let r = 0; r <= 8; r++) {
+
+      document.getElementById(r).classList = 'boton';
+
+    }
+    win = 0;
+    jug = 1;
+  }
+
+  function lock1() {
+    if (tab[4] == 1 && tab[0] == 2 && tab[2] == 2 && tab[7] == 1) {
+      alert('you cracked the code!');
+      document.getElementById('ERROR').hidden = false;
+    }
+  }
+
+</script>
+
+</body>
